@@ -116,3 +116,62 @@ cp ~/.dosbox/mapper-SVN.map  /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.map
 
 ##### **Mapeo de botones y sticks con Linux Joystick Mapper**
 
+- Descargar: [Linux Joystick Mapper](https://sourceforge.net/p/linuxjoymap/wiki/Home/)
+- Descomprimir y compilar. En el paquete también viene un txt con las teclas posibles y unos cuantos pdfs y ejemplos de uso.
+
+```bash
+/home/pi/utils/joymap-0.4.2
+make
+```
+
+- Comprobamos el estado de los dispositivos de entrada de la consola.
+
+<pre>pi@retropie:~/utils/joymap-0.4.2 $ cat /proc/bus/input/devices
+I: Bus=0003 <b>Vendor=2341 Product=8036</b> Version=0101
+N: <b>Name="Arduino LLC Arduino Leonardo"</b>
+P: Phys=usb-3f980000.usb-1.3/input2
+S: Sysfs=/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3/1-1.3:1.2/0003:2341:8036.0001/input/input0
+U: Uniq=HIDAF
+H: <b>Handlers=js0</b> event0
+B: PROP=0
+B: EV=1b
+B: KEY=ffff 0 0 0 0 0 0 0 0 0 0 0 0 ffff 0 0 0 0 0 0 0 0 0
+B: ABS=f003f
+B: MSC=10
+ 
+I: Bus=0003 Vendor=046d Product=400e Version=0111
+N: Name="Logitech K400"
+P: Phys=usb-3f980000.usb-1.4:1
+S: Sysfs=/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.4/1-1.4:1.2/0003:046D:C52B.0004/0003:046D:400E.0005/input/input1
+U: Uniq=400e-30-07-d3-fb
+H: Handlers=sysrq kbd leds mouse0 event1
+B: PROP=0
+B: EV=12001f
+B: KEY=3007f 0 0 0 0 483ffff 17aff32d bf544446 0 0 ffff0001 130f93 8b17c007 ffff7bfa d9415fff febeffdf ffefffff ffffffff fffffffe
+B: REL=1c3
+B: ABS=1 0
+B: MSC=10
+B: LED=1f
+ 
+I: Bus=0003 Vendor=0001 Product=0001 Version=0001
+N: Name="circuitsword"
+P: Phys=
+S: Sysfs=/devices/virtual/input/input2
+U: Uniq=
+H: Handlers=sysrq kbd event2
+B: PROP=0
+B: EV=3
+B: KEY=ffff ffefffff ffffffff fffffffe</pre>
+
+- Estos son los dispositivos que aparecen sin nada conectado a la consola:
+
+<pre>pi@retropie:/dev/input $ ll
+total 0
+drwxr-xr-x  2 root root      80 abr 20 21:24 by-id
+drwxr-xr-x  2 root root      80 abr 20 21:24 by-path
+crw-rw----+ 1 root input 13, 64 abr 20 21:22 event0
+crw-rw----  1 root input 13, 65 abr 20 21:22 event1
+<b>crw-rw----+ 1 root input 13,  0 abr 20 21:22 js0</b>
+crw-rw----  1 root input 13, 63 abr 20 21:22 mice
+pi@retropie:/dev/input $</pre>
+
