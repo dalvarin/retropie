@@ -10,6 +10,7 @@
     - [2.1.3. **Instalación del juego**](#213-instalación-del-juego)
     - [2.1.4. **Mapeo de botones y sticks**](#214-mapeo-de-botones-y-sticks)
       - [**Mapeo de botones y sticks con el keymapper de DOSbox**](#mapeo-de-botones-y-sticks-con-el-keymapper-de-dosbox)
+      - [**Mapeo de botones y sticks con Linux Joystick Mapper**](#mapeo-de-botones-y-sticks-con-linux-joystick-mapper)
 
 ## 1. Scripts
 
@@ -83,6 +84,35 @@ Hay dos herramientas para mapear los botones y sticks de la consola:
 
 Mapeamos las teclas necesarias para el juego con los botones de la consola:
 
+- Manual del juego. En este caso: [https://www.freegameempire.com/games/Alone-in-The-Dark-2/manual](https://www.freegameempire.com/games/Alone-in-The-Dark-2/manual)
+- En el fichero~/.dosbox/dosbox-SVN.conf este parámetro debe estar así: joysticktype=fcs (para poder mapear el pad con las flechas de movimientos).
+- Nos aseguramos de que el mapa por defecto está limpio:
 
+```bash
+pi@retropie:~/RetroPie/roms/pc/AITD2 $ cd ~/.dosbox/
+pi@retropie:~/.dosbox $ ls
+dosbox-SVN.conf  emulators.cfg  mapper-SVN.map
+pi@retropie:~/.dosbox $ mv mapper-SVN.map mapper-SVN.old
+```
 
+- Lanzamos el mapper (preferiblemente desde un terminal remoto con X windows…en la propia consola es un poco infernal hacer esto).
+
+```bash
+pi@retropie:/opt/retropie/emulators/dosbox/bin/dosbox -startmapper
+```
+
+- Se abrirá el keymapper:
+![images/dosbox_keymapper_001.png](images/dosbox_keymapper_001.png)
+
+- La parte marcada en azul es lo que se activa con el joystick=fcs
+- Ahora no tenemos más que ir seleccionando teclas con el ratón, darle a "Add" y pulsar el botón adecuado.
+- "Save" y "Exit" al finalizar.
+- Escribimos exit para salir del dosbox
+- Copiamos el fichero de mapeo al directorio /home/pi/RetroPie/roms/pc/games/AITD2 y lo llamamos dosbox.map
+
+```bash
+cp ~/.dosbox/mapper-SVN.map  /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.map
+```
+
+##### **Mapeo de botones y sticks con Linux Joystick Mapper**
 
