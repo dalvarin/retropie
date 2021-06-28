@@ -3,21 +3,70 @@
 - [1. Scripts](#1-scripts)
   - [1.1. Parada de Emulation Station](#11-parada-de-emulation-station)
   - [1.2. Arranque de Emulation Station](#12-arranque-de-emulation-station)
+  - [1.3. Normalizador de imágenes de carátulas](#13-normalizador-de-imágenes-de-carátulas)
+  - [1.4. Añadir borde rojo a las imágenes JPG](#14-añadir-borde-rojo-a-las-imágenes-jpg)
+  - [1.5. Configuración de un juego para DOSbox](#15-configuración-de-un-juego-para-dosbox)
 - [2. Procedimientos](#2-procedimientos)
   - [2.1. Alta de juegos en DOSbox](#21-alta-de-juegos-en-dosbox)
     - [2.1.1. **Preparación general de Emulation Station**](#211-preparación-general-de-emulation-station)
     - [2.1.2. **Preparación de los directorios del juego**](#212-preparación-de-los-directorios-del-juego)
     - [2.1.3. **Instalación del juego**](#213-instalación-del-juego)
     - [2.1.4. **Mapeo de botones y sticks**](#214-mapeo-de-botones-y-sticks)
-      - [**Mapeo de botones y sticks con el keymapper de DOSbox**](#mapeo-de-botones-y-sticks-con-el-keymapper-de-dosbox)
-      - [**Mapeo de botones y sticks con Linux Joystick Mapper**](#mapeo-de-botones-y-sticks-con-linux-joystick-mapper)
-    - [**Configuración del juego**](#configuración-del-juego)
+      - [2.1.4.1. **Mapeo de botones y sticks con el keymapper de DOSbox**](#2141-mapeo-de-botones-y-sticks-con-el-keymapper-de-dosbox)
+      - [2.1.4.2. **Mapeo de botones y sticks con Linux Joystick Mapper**](#2142-mapeo-de-botones-y-sticks-con-linux-joystick-mapper)
+    - [2.1.5. **Configuración del juego**](#215-configuración-del-juego)
 
 ## 1. Scripts
 
 ### 1.1. Parada de Emulation Station
 
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Parada de ES desde Putty|
+|Script en el repo|[scripts/stop_emulationstation.sh](scripts/stop_emulationstation.sh)|
+|Dependencias||
+|Ubicación en SO|~/utils/|
+|Enlace|/usr/bin/stop_es|
+
 ### 1.2. Arranque de Emulation Station
+
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Arranque de ES desde Putty|
+|Script en el repo|[scripts/restart_emulationstation.sh](scripts/restart_emulationstation.sh)|
+|Dependencias||
+|Ubicación en SO|~/utils/|
+|Enlace|/usr/bin/start_es<p>/usr/bin/restart_es|
+
+### 1.3. Normalizador de imágenes de carátulas
+
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Normaliza altura, peso y formato (jpg) de las imágenes del directorio de trabajo|
+|Script en el repo|[scripts/picnormalizer.sh](scripts/picnormalizer.sh)|
+|Dependencias||
+|Ubicación en SO|~/utils/|
+|Enlace|/usr/bin/picnormalizer|
+
+### 1.4. Añadir borde rojo a las imágenes JPG
+
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Añade un borde rojo a la imagen JPG que le pasemos|
+|Script en el repo|[scripts/add_red_border_to_image.sh](scripts/add_red_border_to_image.sh)|
+|Dependencias|[Image Magik](https://imagemagick.org/index.php)|
+|Ubicación en SO|~/utils/|
+|Enlace|/usr/bin/red_border|
+
+### 1.5. Configuración de un juego para DOSbox
+
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Automatiza la configuración de un juego para DOSbox|
+|Script en el repo|[scripts/pcgameadder.sh](scripts/pcgameadder.sh)|
+|Dependencias|Python 3|
+|Ubicación en SO|~/utils/|
+|Enlace||
 
 ## 2. Procedimientos
 
@@ -81,7 +130,7 @@ Hay dos herramientas para mapear los botones y sticks de la consola:
 - CASO 1: El keymapper del dosbox: se usa para juegos controlados por teclado y en los que el joystick funciona como debe.
 - CASO 2: [Linux Joystick Mapper](https://sourceforge.net/p/linuxjoymap/wiki/Home/) que se utiliza en juegos donde sea necesario el ratón o el joystick no funcione como debe.
 
-##### **Mapeo de botones y sticks con el keymapper de DOSbox**
+##### 2.1.4.1. **Mapeo de botones y sticks con el keymapper de DOSbox**
 
 Mapeamos las teclas necesarias para el juego con los botones de la consola:
 
@@ -115,7 +164,7 @@ pi@retropie:/opt/retropie/emulators/dosbox/bin/dosbox -startmapper
 cp ~/.dosbox/mapper-SVN.map  /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.map
 ```
 
-##### **Mapeo de botones y sticks con Linux Joystick Mapper**
+##### 2.1.4.2. **Mapeo de botones y sticks con Linux Joystick Mapper**
 
 - Descargar: [Linux Joystick Mapper](https://sourceforge.net/p/linuxjoymap/wiki/Home/)
 - Descomprimir y compilar. En el paquete también viene un txt con las teclas posibles y unos cuantos pdfs y ejemplos de uso.
@@ -297,7 +346,7 @@ button vendor=0x2341 product=0x8036 src=6 target=kbd button="kp9"
 button vendor=0x2341 product=0x8036 src=8 target=kbd button="kp7"
 ```
 
-#### **Configuración del juego**
+#### 2.1.5. **Configuración del juego**
 
 - Copiamos el fichero de configuración del dosbox en el directorio del juego y lo llamamos dosbox.conf
 
