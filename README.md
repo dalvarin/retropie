@@ -11,6 +11,7 @@
     - [2.1.4. **Mapeo de botones y sticks**](#214-mapeo-de-botones-y-sticks)
       - [**Mapeo de botones y sticks con el keymapper de DOSbox**](#mapeo-de-botones-y-sticks-con-el-keymapper-de-dosbox)
       - [**Mapeo de botones y sticks con Linux Joystick Mapper**](#mapeo-de-botones-y-sticks-con-linux-joystick-mapper)
+    - [**Configuración del juego**](#configuración-del-juego)
 
 ## 1. Scripts
 
@@ -174,4 +175,202 @@ crw-rw----  1 root input 13, 65 abr 20 21:22 event1
 <b>crw-rw----+ 1 root input 13,  0 abr 20 21:22 js0</b>
 crw-rw----  1 root input 13, 63 abr 20 21:22 mice
 pi@retropie:/dev/input $</pre>
+
+- Si conecto el teclado logitech:
+
+<pre>pi@retropie:/dev/input $ ll
+total 0
+drwxr-xr-x  2 root root     120 abr 21 16:43 by-id
+drwxr-xr-x  2 root root     120 abr 21 16:43 by-path
+crw-rw----+ 1 root input 13, 64 abr 20 21:22 event0
+crw-rw----  1 root input 13, 65 abr 20 21:22 event1
+<b>crw-rw----  1 root input 13, 66 abr 21 16:43 event2</b>
+crw-rw----+ 1 root input 13,  0 abr 20 21:22 js0
+crw-rw----  1 root input 13, 63 abr 20 21:22 mice
+<b>crw-rw----  1 root input 13, 32 abr 21 16:43 mouse0</b>
+pi@retropie:/dev/input $</pre>
+
+- Si cargamos un mapa cualquiera en el joymap, esto es lo que aparece:
+
+<pre>pi@retropie:~/temp $ sudo joymap-0.4.2/loadmap mouse.map &
+[1] 2641
+pi@retropie:~/temp $ 0 joysticks.
+Found device Arduino LLC Arduino Leonardo (vendor=0x2341, product=0x8036)
+Found device circuitsword (vendor=0x0001, product=0x0001)
+Found device Logitech K400 (vendor=0x046d, product=0x400e)
+<b>Found device JOYMAP Code Device (vendor=0x00ff, product=0x0000)
+2 button assignments.
+3 axes assignments.</b>
+ 
+pi@retropie:~/temp $</pre>
+
+- Estos son los dispositivos que aparecen:
+
+<pre>pi@retropie:/dev/input $ ll
+total 0
+drwxr-xr-x  2 root root     120 abr 21 16:43 by-id
+drwxr-xr-x  2 root root     120 abr 21 16:43 by-path
+crw-rw----+ 1 root input 13, 64 abr 20 21:22 event0
+crw-rw----  1 root input 13, 65 abr 20 21:22 event1
+<b>crw-rw----  1 root input 13, 74 abr 21 17:11 event10
+crw-rw----  1 root input 13, 75 abr 21 17:11 event11
+crw-rw----  1 root input 13, 76 abr 21 17:11 event12
+crw-rw----  1 root input 13, 77 abr 21 17:11 event13
+crw-rw----  1 root input 13, 78 abr 21 17:11 event14
+crw-rw----+ 1 root input 13, 79 abr 21 17:11 event15</b>
+crw-rw----  1 root input 13, 66 abr 21 16:43 event2
+<b>crw-rw----  1 root input 13, 67 abr 21 17:11 event3
+crw-rw----  1 root input 13, 68 abr 21 17:11 event4
+crw-rw----  1 root input 13, 69 abr 21 17:11 event5
+crw-rw----  1 root input 13, 70 abr 21 17:11 event6
+crw-rw----  1 root input 13, 71 abr 21 17:11 event7
+crw-rw----  1 root input 13, 72 abr 21 17:11 event8
+crw-rw----  1 root input 13, 73 abr 21 17:11 event9</b>
+crw-rw----+ 1 root input 13,  0 abr 20 21:22 js0
+<b>crw-rw----+ 1 root input 13,  1 abr 21 17:11 js1</b>
+crw-rw----  1 root input 13, 63 abr 20 21:22 mice
+crw-rw----  1 root input 13, 32 abr 21 16:43 mouse0
+<b>crw-rw----  1 root input 13, 33 abr 21 17:11 mouse1</b>
+pi@retropie:/dev/input $</pre>
+
+- Con el ``jstest`` vemos qué pasa cuando pulsamos los botones o movemos los ejes de la consola:
+  - Tenemos 10 ejes que son:
+    - X,Y,Z del Jostick 1 (instalado) (ejes 0, 1 y 2)
+    - Rx,Ry,Rz del Jostick 2 (no instalado) (ejes 3, 4 y 5)
+    - Ejes X e Y de la cruceta 0 (instalada) (ejes 6 y 7)
+    - Ejes X e Y de la cruceta 1 (no instalada) (ejes 8 y 9)
+  - 32 botones, de los cuales, los 10 primeros son los que están disponibles. En orden:
+    - 0: A
+    - 1: B
+    - 2: Y
+    - 3: X
+    - 4: Start
+    - 5: Select
+    - 6: Rigth shoulder
+    - 7: Rigth trigger
+    - 8: Left Shoulder
+    - 9: Left trigger
+
+<pre>pi@retropie:~/temp $ jstest /dev/input/js0
+Driver version is 2.1.0.
+Joystick (Arduino LLC Arduino Leonardo) has 10 axes (X, Y, Z, Rx, Ry, Rz, Hat0X, Hat0Y, Hat1X, Hat1Y)
+and 32 buttons (Trigger, ThumbBtn, ThumbBtn2, TopBtn, TopBtn2, PinkieBtn, BaseBtn, BaseBtn2, BaseBtn3, BaseBtn4, BaseBtn5, BaseBtn6, ?, ?, ?, BtnDead, (null), (null), (null), (null), (null), (null), (null), (null), (null), (null), (null), (null), (null), (null), (null), (null)).
+Testing ... (interrupt to exit)
+Axes:  0:     0  1:     0  2:     0  3:     0  4:     0  5:     0  6:     0  7:     0  8:     0  9:     0 Buttons:  0:off  1:off  2:off  3:off  4:off  5:off  6:off  7:off  8:off  9:off 10:off 11:off 12:off 13:off 14:off 15:off 16:off 17:off 18:off 19:off 20:off 21:off 22:off 23:off 24:off 25:off 26:off 27:off 28:off 29:off 30:off 31:off</pre>
+
+- Si usamos el jscal obtenemos otros ids para los botones y ejes:
+
+```sh
+pi@retropie:~/temp $ jscal -q /dev/input/js0
+jscal -u 10,0,1,2,3,4,5,16,17,18,19,32,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719 /dev/input/js0
+pi@retropie:~/temp $
+ 
+Interpretamos la salida:
+--> 10 axis con los siguientes ids: 0,1,2,3,4,5,16,17,18,19
+--> 32 buttons con los siguientes ids: 288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719
+```
+
+- Con el joymap hay que probar las dos opciones de ID que tengamos para ver cual es la buena.
+- Un ejemplo de mapa (Eye of The Beholder 3). Este fichero deberá estar en: ``/home/pi/RetroPie/roms/pc/games/<gamename>/controls.map`` y es propio de cada juego.
+
+```sh
+# EOB3 Key and Mouse Map
+ 
+# Map the joytick axis to the mouse axis
+axis vendor=0x2341 product=0x8036 src=0 target=mouse axis=0 speed=20 deadzone=3000
+axis vendor=0x2341 product=0x8036 src=1 target=mouse axis=1 speed=20 deadzone=3000
+ 
+# This game is using only one button from the mouse
+button vendor=0x2341 product=0x8036 src=1 target=mouse button=0
+ 
+# Map the hat axis to the direction keys
+axis vendor=0x2341 product=0x8036 src=17 target=kbd minus="up" plus="down" flags="trinary"
+axis vendor=0x2341 product=0x8036 src=16 target=kbd minus="left" plus="right" flags="trinary"
+ 
+# Map several buttons to keyboard keys
+button vendor=0x2341 product=0x8036 src=0 target=kbd button="enter"
+button vendor=0x2341 product=0x8036 src=2 target=kbd button="space"
+button vendor=0x2341 product=0x8036 src=3 target=kbd button="esc"
+ 
+# Map turn rigth and turn left buttons
+button vendor=0x2341 product=0x8036 src=6 target=kbd button="kp9"
+button vendor=0x2341 product=0x8036 src=8 target=kbd button="kp7"
+```
+
+#### **Configuración del juego**
+
+- Copiamos el fichero de configuración del dosbox en el directorio del juego y lo llamamos dosbox.conf
+
+```sh
+cp ~/.dosbox/dosbox-SVN.conf  /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.conf
+```
+
+- Editamos el fichero:
+  - ``mapperfile= /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.map``
+  - Sección de ejecución del juego:
+
+```sh
+[autoexec]
+# Lines in this section will be run at startup.
+# You can put your MOUNT lines here.
+ 
+mount c /home/pi/RetroPie/roms/pc/games/AITD2/C
+C:
+CD AITD2
+AITD2CRK.COM
+AITD2.EXE
+EXIT
+```
+
+- Creamos el fichero de ejecución del juego en: ``/home/pi/RetroPie/roms/pc/AITD2.sh`` (Caso de mapeo con key mapper de dosbox)
+
+```sh
+#!/bin/bash
+DIRNAME=AITD2
+/opt/retropie/emulators/dosbox/bin/dosbox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf"
+```
+
+- Creamos el fichero de ejecución del juego en: ``/home/pi/RetroPie/roms/pc/AITD2.sh`` (Caso de mapeo con linux joy map)
+
+```sh
+#!/bin/bash
+DIRNAME=EOB3
+sudo /home/pi/utils/joymap-0.4.2/loadmap "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/controls.map" &
+/opt/retropie/emulators/dosbox/bin/dosbox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf"
+sudo killall loadmap
+sleep 1
+```
+
+- Nos descargamos y almacenamos la carátula del juego:
+
+```sh
+pi@retropie:~/.emulationstation/downloaded_images/pc $ ll AITD2.png
+-rw-r--r-- 1 pi pi 670210 ene 18 19:39 AITD2.png
+pi@retropie:~/.emulationstation/downloaded_images/pc $
+```
+
+- Configuramos el juego para que lo vea el emulation station. Editamos el fichero: ``~/.emulationstation/gamelists/pc/gamelist.xml``
+
+```xml
+<game>
+    <path>./AITD2.sh</path>
+    <name>Alone In The Dark 2</name>
+    <image>/home/pi/.emulationstation/downloaded_images/pc/AITD2.png</image>
+</game>
+```
+
+- Es decir, por cada juego que metamos, esta es la estructura final y los ficheros modificados:
+
+|Fichero|Descripción|
+|-|-|
+|/home/pi/RetroPie/roms/pc/\<gamename>.sh|Script de ejecución del comando dosbox y aquello que sea necesario lanzar antes (como un loadmap)|
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/dosbox.conf|Fichero de confguración del dosbox
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/dosbox.map|Fichero de mapeo de teclas del dosbox
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/controls.map|Fichero de mapeo de teclas del Linux Joy Mapper
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/C/|Directorio principal del juego
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/CD/|Directorio con la iso del juego en caso necesario
+|/home/pi/.emulationstation/downloaded_images/pc/\<gamename>.[jpg\|png]|Carátula del juego
+|/home/pi/.emulationstation/gamelists/pc/gamelist.xml|Fichero modificado con la entrada del juego
+
+
 
