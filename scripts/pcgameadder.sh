@@ -2,7 +2,7 @@
 
 if [ $# -ne 3 ]
 then
-  echo "Please, add two arguments <Game MSDOS alias> <Game name> <Game executable>"
+  echo "Please, add three arguments <Game MSDOS alias> <Game name> <Game executable>"
   echo "  Example: Game MSDOS alias: LEMMING2"
   echo "           Game name: \"Lemmings 2: The Tribes\""
   echo "           Game executable: L2.EXE"

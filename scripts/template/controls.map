@@ -1,0 +1,35 @@
+# GAMEID Key maps
+
+# Map the joytick axis to the mouse axis
+axis vendor=0x2341 product=0x8036 src=0 target=mouse axis=0 speed=20 deadzone=3000
+axis vendor=0x2341 product=0x8036 src=1 target=mouse axis=1 speed=20 deadzone=3000
+
+# Maps Rigth and Left Mouse buttons
+button vendor=0x2341 product=0x8036 src=0 target=mouse button=0
+button vendor=0x2341 product=0x8036 src=1 target=mouse button=1
+
+# Map the hat axis to the direction keys
+axis vendor=0x2341 product=0x8036 src=17 target=kbd minus="up" plus="down" flags="trinary"
+axis vendor=0x2341 product=0x8036 src=16 target=kbd minus="left" plus="right" flags="trinary"
+
+# Map buttos to keyboard keys
+## A
+#button vendor=0x2341 product=0x8036 src=0 target=kbd button="enter"
+## B
+#button vendor=0x2341 product=0x8036 src=1 target=kbd button="esc"
+## Y
+button vendor=0x2341 product=0x8036 src=2 target=kbd button="esc"
+## X
+button vendor=0x2341 product=0x8036 src=3 target=kbd button="enter"
+## Start
+button vendor=0x2341 product=0x8036 src=4 target=kbd button="f9"
+## Select
+button vendor=0x2341 product=0x8036 src=5 target=kbd button="rightctrl"
+## Right Shoulder
+#button vendor=0x2341 product=0x8036 src=6 target=kbd button="t"
+## Right Trigger
+#button vendor=0x2341 product=0x8036 src=7 target=kbd button=f2
+## Left Shoulder
+#button vendor=0x2341 product=0x8036 src=8 target=kbd button="u"
+## Left Trigger
+#button vendor=0x2341 product=0x8036 src=9 target=kbd button=f1

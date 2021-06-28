@@ -22,9 +22,9 @@
 
 |Concepto|Descripción|
 |-|-|
-|Utilidad|Parada de ES desde Putty|
+|Utilidad|Parada de Emulation Station desde Putty|
 |Script en el repo|[scripts/stop_emulationstation.sh](scripts/stop_emulationstation.sh)|
-|Dependencias||
+|Dependencias|[https://github.com/crcerror/ES-generic-shutdown](https://github.com/crcerror/ES-generic-shutdown)<p>[scripts\ES-generic-shutdown-master.zip](scripts\ES-generic-shutdown-master.zip)|
 |Ubicación en SO|~/utils/|
 |Enlace|/usr/bin/stop_es|
 
@@ -34,7 +34,7 @@
 |-|-|
 |Utilidad|Arranque de ES desde Putty|
 |Script en el repo|[scripts/restart_emulationstation.sh](scripts/restart_emulationstation.sh)|
-|Dependencias||
+|Dependencias|Ninguna|
 |Ubicación en SO|~/utils/|
 |Enlace|/usr/bin/start_es<p>/usr/bin/restart_es|
 
@@ -44,7 +44,7 @@
 |-|-|
 |Utilidad|Normaliza altura, peso y formato (jpg) de las imágenes del directorio de trabajo|
 |Script en el repo|[scripts/picnormalizer.sh](scripts/picnormalizer.sh)|
-|Dependencias||
+|Dependencias|[Image Magik](https://imagemagick.org/index.php)|
 |Ubicación en SO|~/utils/|
 |Enlace|/usr/bin/picnormalizer|
 

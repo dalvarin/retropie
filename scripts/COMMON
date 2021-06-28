@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [ -z "${DIRNAME}" ]
+then
+  echo "Variable DIRNAME is not set or is empty!"
+  exit 1
+fi
+
+if [ ! -f /home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf ]
+then
+  echo "NO dosbox config file found!"
+  exit 1
+fi
+
+grep mapperfile /home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf
+
+if [ $? -eq 0 ]
+then
+  if [ ! -f "$(grep mapperfile /home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf | awk -F= '{ print $2 }')" ]
+  then
+    echo "NO dosbox mapping file found!"
+    exit 1
+  fi
+fi
+
+if [ -f /home/pi/RetroPie/roms/pc/games/${DIRNAME}/controls.map ]
+then
+  sudo /home/pi/utils/joymap-0.4.2/loadmap "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/controls.map" &
+fi
+
+/opt/retropie/emulators/dosbox/bin/dosbox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf"
+
+ps -ef | grep loadmap | grep -v grep
+
+if [ $? -eq 0 ]
+then
+  echo "Killing loadmap processes"
+  sudo killall loadmap
+else
+  echo "NO loadmap processes to kill"
+fi
+
+sleep 1
