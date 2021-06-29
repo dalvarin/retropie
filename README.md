@@ -67,7 +67,7 @@
 |-|-|
 |Utilidad|Automatiza la configuración de un juego para DOSBox|
 |Script en el repo|[scripts/pcgameadder.sh](scripts/pcgameadder.sh)|
-|Dependencias|Python 3<p>~/RetroPie/roms/pc/games/template/<p>~/RetroPie/roms/pc/COMMON|
+|Dependencias|Python 3<p>``~/RetroPie/roms/pc/games/template/``<p>``~/RetroPie/roms/pc/COMMON``|
 |Ubicación en SO|~/utils/pcgameadder.sh|
 |Enlace||
 
