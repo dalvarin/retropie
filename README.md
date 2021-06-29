@@ -5,16 +5,19 @@
   - [1.2. Arranque de Emulation Station](#12-arranque-de-emulation-station)
   - [1.3. Normalizador de imágenes de carátulas](#13-normalizador-de-imágenes-de-carátulas)
   - [1.4. Añadir borde rojo a las imágenes JPG](#14-añadir-borde-rojo-a-las-imágenes-jpg)
-  - [1.5. Configuración de un juego para DOSbox](#15-configuración-de-un-juego-para-dosbox)
+  - [1.5. Configuración de un juego para DOSBox](#15-configuración-de-un-juego-para-dosbox)
+  - [1.6. Directorio template para juegos DOSBox](#16-directorio-template-para-juegos-dosbox)
+  - [1.7. Script común para juegos DOSBox](#17-script-común-para-juegos-dosbox)
 - [2. Procedimientos](#2-procedimientos)
-  - [2.1. Alta de juegos en DOSbox](#21-alta-de-juegos-en-dosbox)
+  - [2.1. Alta manual de juegos en DOSBox](#21-alta-manual-de-juegos-en-dosbox)
     - [2.1.1. **Preparación general de Emulation Station**](#211-preparación-general-de-emulation-station)
     - [2.1.2. **Preparación de los directorios del juego**](#212-preparación-de-los-directorios-del-juego)
     - [2.1.3. **Instalación del juego**](#213-instalación-del-juego)
     - [2.1.4. **Mapeo de botones y sticks**](#214-mapeo-de-botones-y-sticks)
-      - [2.1.4.1. **Mapeo de botones y sticks con el keymapper de DOSbox**](#2141-mapeo-de-botones-y-sticks-con-el-keymapper-de-dosbox)
+      - [2.1.4.1. **Mapeo de botones y sticks con el keymapper de DOSBox**](#2141-mapeo-de-botones-y-sticks-con-el-keymapper-de-dosbox)
       - [2.1.4.2. **Mapeo de botones y sticks con Linux Joystick Mapper**](#2142-mapeo-de-botones-y-sticks-con-linux-joystick-mapper)
     - [2.1.5. **Configuración del juego**](#215-configuración-del-juego)
+  - [2.2. Alta automatica de juegos de DOSBox](#22-alta-automatica-de-juegos-de-dosbox)
 
 ## 1. Scripts
 
@@ -58,24 +61,44 @@
 |Ubicación en SO|~/utils/|
 |Enlace|/usr/bin/red_border|
 
-### 1.5. Configuración de un juego para DOSbox
+### 1.5. Configuración de un juego para DOSBox
 
 |Concepto|Descripción|
 |-|-|
-|Utilidad|Automatiza la configuración de un juego para DOSbox|
+|Utilidad|Automatiza la configuración de un juego para DOSBox|
 |Script en el repo|[scripts/pcgameadder.sh](scripts/pcgameadder.sh)|
-|Dependencias|Python 3|
-|Ubicación en SO|~/utils/|
+|Dependencias|Python 3<p>~/RetroPie/roms/pc/games/template/<p>~/RetroPie/roms/pc/COMMON|
+|Ubicación en SO|~/utils/pcgameadder.sh|
+|Enlace||
+
+### 1.6. Directorio template para juegos DOSBox
+
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Directorio con las plantillas necesarias para configurar un juego en DOSBox|
+|Script en el repo|[scripts/template/](scripts/template/)|
+|Dependencias||
+|Ubicación en SO|~/RetroPie/roms/pc/games/template/|
+|Enlace||
+
+### 1.7. Script común para juegos DOSBox
+
+|Concepto|Descripción|
+|-|-|
+|Utilidad|Script común de ejecución para juegos en DOSBox|
+|Script en el repo|[scripts/COMMON](scripts/COMMON)|
+|Dependencias||
+|Ubicación en SO|~/RetroPie/roms/pc/COMMON|
 |Enlace||
 
 ## 2. Procedimientos
 
-### 2.1. Alta de juegos en DOSbox
+### 2.1. Alta manual de juegos en DOSBox
 
 #### 2.1.1. **Preparación general de Emulation Station**
 
 - Juego empleado para el ejemplo: Alone In The Dark 2
-- Lo primero, si no se ha hecho antes, es configurar en Emulation Station la sección del MSDOS/Dosbox/PC para que sólo reconozca como ejecutables los ficheros .sh (así ya no saldrán los .bat, .exe, .com, etc y podemos controlar mejor la ejecución y dejarlo todo más limpio).
+- Lo primero, si no se ha hecho antes, es configurar en Emulation Station la sección del MSDOS/DOSBox/PC para que sólo reconozca como ejecutables los ficheros .sh (así ya no saldrán los .bat, .exe, .com, etc y podemos controlar mejor la ejecución y dejarlo todo más limpio).
   - Hacer backup del fichero actual y sustituir el fichero por uno nuevo.
 
 ```sh
@@ -121,47 +144,47 @@ En esta sección puede haber muchas variaciones, desde una instalación que sól
   - Creamos el directorio donde descomprimir el juego
     ``/home/pi/RetroPie/roms/pc/games/AITD2/C/AITD2``
   - Copiamos el autoextraible ahí (ALONE2.EXE).
-  - TBC: falta el procedimiento de crear un fichero temporal de dosbox para entrar en una sesión de la herramienta y ejecutar el .EXE.
+  - TBC: falta el procedimiento de crear un fichero temporal de DOSBox para entrar en una sesión de la herramienta y ejecutar el .EXE.
 
 #### 2.1.4. **Mapeo de botones y sticks**
 
 Hay dos herramientas para mapear los botones y sticks de la consola:
 
-- CASO 1: El keymapper del dosbox: se usa para juegos controlados por teclado y en los que el joystick funciona como debe.
+- CASO 1: El keymapper del DOSBox: se usa para juegos controlados por teclado y en los que el joystick funciona como debe.
 - CASO 2: [Linux Joystick Mapper](https://sourceforge.net/p/linuxjoymap/wiki/Home/) que se utiliza en juegos donde sea necesario el ratón o el joystick no funcione como debe.
 
-##### 2.1.4.1. **Mapeo de botones y sticks con el keymapper de DOSbox**
+##### 2.1.4.1. **Mapeo de botones y sticks con el keymapper de DOSBox**
 
 Mapeamos las teclas necesarias para el juego con los botones de la consola:
 
 - Manual del juego. En este caso: [https://www.freegameempire.com/games/Alone-in-The-Dark-2/manual](https://www.freegameempire.com/games/Alone-in-The-Dark-2/manual)
-- En el fichero~/.dosbox/dosbox-SVN.conf este parámetro debe estar así: joysticktype=fcs (para poder mapear el pad con las flechas de movimientos).
+- En el fichero~/.DOSBox/DOSBox-SVN.conf este parámetro debe estar así: joysticktype=fcs (para poder mapear el pad con las flechas de movimientos).
 - Nos aseguramos de que el mapa por defecto está limpio:
 
 ```bash
-pi@retropie:~/RetroPie/roms/pc/AITD2 $ cd ~/.dosbox/
-pi@retropie:~/.dosbox $ ls
-dosbox-SVN.conf  emulators.cfg  mapper-SVN.map
-pi@retropie:~/.dosbox $ mv mapper-SVN.map mapper-SVN.old
+pi@retropie:~/RetroPie/roms/pc/AITD2 $ cd ~/.DOSBox/
+pi@retropie:~/.DOSBox $ ls
+DOSBox-SVN.conf  emulators.cfg  mapper-SVN.map
+pi@retropie:~/.DOSBox $ mv mapper-SVN.map mapper-SVN.old
 ```
 
 - Lanzamos el mapper (preferiblemente desde un terminal remoto con X windows…en la propia consola es un poco infernal hacer esto).
 
 ```bash
-pi@retropie:/opt/retropie/emulators/dosbox/bin/dosbox -startmapper
+pi@retropie:/opt/retropie/emulators/DOSBox/bin/DOSBox -startmapper
 ```
 
 - Se abrirá el keymapper:
-![images/dosbox_keymapper_001.png](images/dosbox_keymapper_001.png)
+![images/DOSBox_keymapper_001.png](images/DOSBox_keymapper_001.png)
 
 - La parte marcada en azul es lo que se activa con el joystick=fcs
 - Ahora no tenemos más que ir seleccionando teclas con el ratón, darle a "Add" y pulsar el botón adecuado.
 - "Save" y "Exit" al finalizar.
-- Escribimos exit para salir del dosbox
-- Copiamos el fichero de mapeo al directorio /home/pi/RetroPie/roms/pc/games/AITD2 y lo llamamos dosbox.map
+- Escribimos exit para salir del DOSBox
+- Copiamos el fichero de mapeo al directorio /home/pi/RetroPie/roms/pc/games/AITD2 y lo llamamos DOSBox.map
 
 ```bash
-cp ~/.dosbox/mapper-SVN.map  /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.map
+cp ~/.DOSBox/mapper-SVN.map  /home/pi/RetroPie/roms/pc/games/AITD2/DOSBox.map
 ```
 
 ##### 2.1.4.2. **Mapeo de botones y sticks con Linux Joystick Mapper**
@@ -348,14 +371,14 @@ button vendor=0x2341 product=0x8036 src=8 target=kbd button="kp7"
 
 #### 2.1.5. **Configuración del juego**
 
-- Copiamos el fichero de configuración del dosbox en el directorio del juego y lo llamamos dosbox.conf
+- Copiamos el fichero de configuración del DOSBox en el directorio del juego y lo llamamos DOSBox.conf
 
 ```sh
-cp ~/.dosbox/dosbox-SVN.conf  /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.conf
+cp ~/.DOSBox/DOSBox-SVN.conf  /home/pi/RetroPie/roms/pc/games/AITD2/DOSBox.conf
 ```
 
 - Editamos el fichero:
-  - ``mapperfile= /home/pi/RetroPie/roms/pc/games/AITD2/dosbox.map``
+  - ``mapperfile= /home/pi/RetroPie/roms/pc/games/AITD2/DOSBox.map``
   - Sección de ejecución del juego:
 
 ```sh
@@ -371,12 +394,12 @@ AITD2.EXE
 EXIT
 ```
 
-- Creamos el fichero de ejecución del juego en: ``/home/pi/RetroPie/roms/pc/AITD2.sh`` (Caso de mapeo con key mapper de dosbox)
+- Creamos el fichero de ejecución del juego en: ``/home/pi/RetroPie/roms/pc/AITD2.sh`` (Caso de mapeo con key mapper de DOSBox)
 
 ```sh
 #!/bin/bash
 DIRNAME=AITD2
-/opt/retropie/emulators/dosbox/bin/dosbox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf"
+/opt/retropie/emulators/DOSBox/bin/DOSBox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/DOSBox.conf"
 ```
 
 - Creamos el fichero de ejecución del juego en: ``/home/pi/RetroPie/roms/pc/AITD2.sh`` (Caso de mapeo con linux joy map)
@@ -385,7 +408,7 @@ DIRNAME=AITD2
 #!/bin/bash
 DIRNAME=EOB3
 sudo /home/pi/utils/joymap-0.4.2/loadmap "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/controls.map" &
-/opt/retropie/emulators/dosbox/bin/dosbox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/dosbox.conf"
+/opt/retropie/emulators/DOSBox/bin/DOSBox -conf "/home/pi/RetroPie/roms/pc/games/${DIRNAME}/DOSBox.conf"
 sudo killall loadmap
 sleep 1
 ```
@@ -412,14 +435,37 @@ pi@retropie:~/.emulationstation/downloaded_images/pc $
 
 |Fichero|Descripción|
 |-|-|
-|/home/pi/RetroPie/roms/pc/\<gamename>.sh|Script de ejecución del comando dosbox y aquello que sea necesario lanzar antes (como un loadmap)|
-|/home/pi/RetroPie/roms/pc/games/\<gamename>/dosbox.conf|Fichero de confguración del dosbox
-|/home/pi/RetroPie/roms/pc/games/\<gamename>/dosbox.map|Fichero de mapeo de teclas del dosbox
+|/home/pi/RetroPie/roms/pc/\<gamename>.sh|Script de ejecución del comando DOSBox y aquello que sea necesario lanzar antes (como un loadmap)|
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/DOSBox.conf|Fichero de confguración del DOSBox
+|/home/pi/RetroPie/roms/pc/games/\<gamename>/DOSBox.map|Fichero de mapeo de teclas del DOSBox
 |/home/pi/RetroPie/roms/pc/games/\<gamename>/controls.map|Fichero de mapeo de teclas del Linux Joy Mapper
 |/home/pi/RetroPie/roms/pc/games/\<gamename>/C/|Directorio principal del juego
 |/home/pi/RetroPie/roms/pc/games/\<gamename>/CD/|Directorio con la iso del juego en caso necesario
 |/home/pi/.emulationstation/downloaded_images/pc/\<gamename>.[jpg\|png]|Carátula del juego
 |/home/pi/.emulationstation/gamelists/pc/gamelist.xml|Fichero modificado con la entrada del juego
 
+### 2.2. Alta automatica de juegos de DOSBox
 
+Creación de muchas de las configuraciones del proceso manual mediante la ejecución del script ``~/utils/pcgameadder.sh``.
 
+El script se ejecuta con parámetros:
+
+```sh
+Please, add three arguments <Game MSDOS alias> <Game name> <Game executable>
+  Example: Game MSDOS alias: LEMMING2
+  Game name: \"Lemmings 2: The Tribes\"
+  Game executable: L2.EXE"
+```
+
+Crea y configura las siguientes estructuras:
+
+- Directorio principal del juego: ``~/RetroPie/roms/pc/games/<Game MSDOS alias>/C/<Game MSDOS alias>``
+- Script de lanzamiento del juego: ``~/RetroPie/roms/pc/<Game MSDOS alias>.sh``
+- Configuración DOSBox del juego: ``~/RetroPie/roms/pc/games/<Game MSDOS alias>/dosbox.config``
+- Mapeo de teclas en DOSBox para juego: ``~/RetroPie/roms/pc/games/<Game MSDOS alias>/dosbox.map``
+- Si necesita soporte de ratón o el joystick no funciona como debe, se añade el mapeo con el Joystick Mapper: ``~/RetroPie/roms/pc/games/<Game MSDOS alias>/controls.map``
+- Añade la entrada correspondiente en el fichero: ``~/.emulationstation/gamelists/pc/gamelist.xml``
+
+NOTA: las configuraciones de los ficheros map y config son genéricas, posiblemente haya que hacer algún ajuste después de copiar el juego al directorio principal. También es posible que sea necesario crear puntos adicionales de montaje para el CD.
+
+Finalmente, copiar el juego al directorio y probar lanzarlo.
