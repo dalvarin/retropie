@@ -172,11 +172,11 @@ pi@retropie:~/.DOSBox $ mv mapper-SVN.map mapper-SVN.old
 - Lanzamos el mapper (preferiblemente desde un terminal remoto con X windows…en la propia consola es un poco infernal hacer esto).
 
 ```bash
-pi@retropie:/opt/retropie/emulators/DOSBox/bin/DOSBox -startmapper
+pi@retropie:/opt/retropie/emulators/dosbox/bin/dosbox -startmapper
 ```
 
 - Se abrirá el keymapper:
-![images/DOSBox_keymapper_001.png](images/DOSBox_keymapper_001.png)
+![images/DOSBox_keymapper_001.png](images/dosbox_keymapper_001.png)
 
 - La parte marcada en azul es lo que se activa con el joystick=fcs
 - Ahora no tenemos más que ir seleccionando teclas con el ratón, darle a "Add" y pulsar el botón adecuado.
@@ -470,6 +470,7 @@ Crea y configura las siguientes estructuras:
 NOTA: las configuraciones de los ficheros map y config son genéricas, posiblemente haya que hacer algún ajuste después de copiar el juego al directorio principal. También es posible que sea necesario crear puntos adicionales de montaje para el CD.
 
 Finalmente, copiar el juego al directorio y probar lanzarlo.
+<<<<<<< HEAD
 
 ### Activa joysticks
 
@@ -490,3 +491,5 @@ Ejecutar:
 ```bash
 sudo service cs-hud start
 ```
+=======
+>>>>>>> bb531e021016d2af6ca00289ed1926a18d7bab14
