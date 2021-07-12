@@ -18,7 +18,7 @@
       - [2.1.4.2. **Mapeo de botones y sticks con Linux Joystick Mapper**](#2142-mapeo-de-botones-y-sticks-con-linux-joystick-mapper)
     - [2.1.5. **Configuración del juego**](#215-configuración-del-juego)
   - [2.2. Alta automatica de juegos de DOSBox](#22-alta-automatica-de-juegos-de-dosbox)
-  - [Activa joysticks](#activa-joysticks)
+  - [2.3. Activar joysticks](#23-activar-joysticks)
 
 ## 1. Scripts
 
@@ -470,11 +470,11 @@ Crea y configura las siguientes estructuras:
 NOTA: las configuraciones de los ficheros map y config son genéricas, posiblemente haya que hacer algún ajuste después de copiar el juego al directorio principal. También es posible que sea necesario crear puntos adicionales de montaje para el CD.
 
 Finalmente, copiar el juego al directorio y probar lanzarlo.
-<<<<<<< HEAD
 
-### Activa joysticks
+### 2.3. Activar joysticks
 
 En el home del usuario pi
+
 ```bash
 sudo service cs-hud stop
 python Circuit-Sword/cs-configure.py
@@ -488,8 +488,7 @@ Presionar ENTER y comprobar que en la salida del comando se lee:
 Presionar X y luego ENTER.
 
 Ejecutar:
+
 ```bash
 sudo service cs-hud start
 ```
-=======
->>>>>>> bb531e021016d2af6ca00289ed1926a18d7bab14
