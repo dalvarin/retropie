@@ -497,3 +497,17 @@ sudo service cs-hud start
 ### 2.4. Tras la actualización del script Retropie-Setup
 
  - Ir al menú Retropie > Run Command Configutration > Joy2key version > Seleccionar udev
+
+Error conocido de la instalación y que no parece afectar a nada relevante:
+
+```shell
+omx_render.c: In function ‘setOmxDisplayConfig’:
+omx_render.c:309:21: error: ‘OMX_DISPLAY_ALPHA_FLAGS_MIX’ undeclared (first use in this function)
+   dispConfRT.alpha|=OMX_DISPLAY_ALPHA_FLAGS_MIX;
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+omx_render.c:309:21: note: each undeclared identifier is reported only once for each function it appears in
+Makefile.include:11: fallo en las instrucciones para el objetivo 'omx_render.o'
+make: *** [omx_render.o] Error 1
+Could not successfully build omxiv - OpenMAX image viewer for the Raspberry Pi (omxiv.bin not found).
+```
+
