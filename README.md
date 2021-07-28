@@ -19,6 +19,7 @@
     - [2.1.5. **Configuración del juego**](#215-configuración-del-juego)
   - [2.2. Alta automatica de juegos de DOSBox](#22-alta-automatica-de-juegos-de-dosbox)
   - [2.3. Activar joysticks](#23-activar-joysticks)
+  - [2.4. Tras la actualización del script Retropie-Setup](#24-tras-la-actualización-del-script-retropie-setup)
 
 ## 1. Scripts
 
@@ -492,3 +493,7 @@ Ejecutar:
 ```bash
 sudo service cs-hud start
 ```
+
+### 2.4. Tras la actualización del script Retropie-Setup
+
+ - Ir al menú Retropie > Run Command Configutration > Joy2key version > Seleccionar udev
